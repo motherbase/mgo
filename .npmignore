@@ -1,0 +1,7 @@
+.DS_Store
+lib/
+node_modules/*
+src/test.js
+src/oldercode.js
+npm-debug.log
+.travis.yml
