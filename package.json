@@ -1,6 +1,6 @@
 {
   "name": "mgo",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "fetches status of mgo servers",
   "main": "lib/index.js",
   "scripts": {
