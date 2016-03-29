@@ -6,6 +6,10 @@ const FILTER_TABLE = /\<table\>(.*)\<\/table\>/ig
 const FILTER_SPAN_LIST = /\<span.*?\>(.*?)\<\/span\>/ig
 const FILTER_SPANS = /\<span class=\"(.*?)(st[0-9])?\"\>(.*)\<\/span\>/i
 
+// states
+// st0: everything good
+// st1: down
+// st2: yellow.. which means?
 
 class MGO {
   static get(cb) {
