@@ -4,7 +4,8 @@ import http from 'http'
 // forgiveness please
 const FILTER_TABLE = /\<table\>(.*)\<\/table\>/ig
 const FILTER_SPAN_LIST = /\<span.*?\>(.*?)\<\/span\>/ig
-const FILTER_SPANS = /\<span class=\"(.*) (st[0-9]?)\"\>(.*)\<\/span\>/i
+const FILTER_SPANS = /\<span class=\"(.*?)(st[0-9])?\"\>(.*)\<\/span\>/i
+
 
 class MGO {
   static get(cb) {
@@ -21,8 +22,8 @@ class MGO {
         let results = spanList.map((s) => {
           let res = s.match(FILTER_SPANS)
           return {
-            system_alias: res[1],
-            state: res[2],
+            system_alias: res[1].trim(),
+            state: res[2] || 'disabled',
             system_name: res[3].replace('&reg;', '')
           }
         })
