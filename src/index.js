@@ -1,4 +1,7 @@
+'use strict';
+
 import http from 'http'
+import { promisify } from 'util'
 
 // yes i know using regex with html is _NOT_A_GOOD_IDEA_
 // forgiveness please
@@ -13,6 +16,9 @@ const FILTER_SPANS = /\<span class=\"(.*?)(st[0-9])?\"\>(.*)\<\/span\>/i
 
 class MGO {
   static get(cb) {
+    return cb ? this._get(cb) : promisify(this._get)()
+  }
+  static _get(cb) {
     http.get({
       hostname: 'www.konami.jp',
       port: 80,
@@ -31,9 +37,9 @@ class MGO {
             system_name: res[3].replace('&reg;', '')
           }
         })
-        cb(null, results)
+        return cb(null, results)
       })
-    })
+    }).on('error', err => cb(err))
   }
 }
 
